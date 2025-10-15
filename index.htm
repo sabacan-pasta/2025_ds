@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>サイコロランダム</title>
+  <style>
+    #result {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+    button {
+      font-size: 1.2em;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>1〜6の数字をランダムに表示</h1>
+  <button onclick="rollDice()">数字を出す！</button>
+  <div id="result">-</div>
+
+  <script>
+    function rollDice() {
+      const number = Math.floor(Math.random() * 6) + 1;
+      document.getElementById('result').textContent = number;
+    }
+  </script>
+</body>
+</html>
