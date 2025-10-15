@@ -2,28 +2,59 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>サイコロランダム</title>
+  <title>喜怒哀楽＋メッセージ</title>
   <style>
-    #result {
-      font-size: 2em;
+    #face {
+      font-size: 5em;
       margin-top: 20px;
+      transition: transform 0.2s;
+    }
+    #message {
+      font-size: 1.5em;
+      margin-top: 10px;
     }
     button {
       font-size: 1.2em;
       padding: 10px 20px;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>1〜6の数字をランダムに表示</h1>
-  <button onclick="rollDice()">数字を出す！</button>
-  <div id="result">-</div>
+  <h1>ボタンを押すと「喜怒哀楽」と一言メッセージを表示</h1>
+  <button onclick="showEmotion()">感情を出す！</button>
+  <div id="face">😀</div>
+  <div id="message">こんにちは！</div>
 
   <script>
-    function rollDice() {
-      const number = Math.floor(Math.random() * 6) + 1;
-      document.getElementById('result').textContent = number;
+    function showEmotion() {
+      // 表情とメッセージのセット
+      const emotions = [
+        { face: '😀', message: 'やったー！うれしい！' },   // 喜
+        { face: '😡', message: 'もう我慢できない！' },   // 怒
+        { face: '😢', message: 'かなしいよ…' },          // 哀
+        { face: '🤣', message: 'お腹がよじれるほど笑った！' } // 楽
+      ];
+
+      // ランダムに選択
+      const randomIndex = Math.floor(Math.random() * emotions.length);
+      const selected = emotions[randomIndex];
+
+      // 表示
+      const faceElement = document.getElementById('face');
+      const messageElement = document.getElementById('message');
+      faceElement.textContent = selected.face;
+      messageElement.textContent = selected.message;
+
+      // アニメーション効果
+      faceElement.style.transform = 'scale(1.3)';
+      messageElement.style.opacity = '0';
+      setTimeout(() => {
+        faceElement.style.transform = 'scale(1)';
+        messageElement.style.opacity = '1';
+      }, 200);
     }
   </script>
 </body>
 </html>
+
